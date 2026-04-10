@@ -1,0 +1,14 @@
+# ============================================================
+#  Smart Warehouse AMR — Python Dependencies
+# ============================================================
+#
+#  Install with:
+#    pip3 install -r requirements.txt
+#
+#  Note: ROS2 packages (rclpy, sensor_msgs, geometry_msgs, nav_msgs)
+#  are installed via apt as part of the ROS2 Humble setup.
+#  See setup.sh for the full installation procedure.
+# ============================================================
+
+# Serial communication between Raspberry Pi and Arduino Mega
+pyserial>=3.5
