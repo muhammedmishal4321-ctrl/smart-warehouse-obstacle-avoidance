@@ -1,4 +1,3 @@
-
 ```markdown
 <div align="center">
 
@@ -44,32 +43,32 @@ running on both **Gazebo simulation** and a **physical Raspberry Pi robot**.
 
 ```
 smart-warehouse-obstacle-avoidance/
-├── 📄 setup.sh                 ← One-shot setup script (auto-detects laptop vs RPi)
-├── 📄 requirements.txt         ← Python pip dependencies
+├── 📄 setup.sh                         ← One-shot setup script (auto-detects laptop vs RPi)
+├── 📄 requirements.txt                 ← Python pip dependencies
 ├── 📄 README.md
 ├── 📂 firmware/
-│   └── motor_control.ino       ← Arduino Mega motor PWM controller
+│   └── motor_control.ino               ← Arduino Mega motor PWM controller
 ├── 📂 docs/
-│   └── images/                 ← Screenshots & GIFs for README
+│   └── images/                         ← Screenshots & GIFs for README
 └── 📂 src/
-    ├── 📦 obstacle_avoidance/  ← Core ROS2 package (shared: sim + physical)
+    ├── 📦 obstacle_avoidance/          ← Core ROS2 package (shared: sim + physical)
     │   └── obstacle_avoidance/
-    │       ├── avoid.py        ← Zone-based obstacle avoidance node
-    │       ├── vel_smoother.py ← Velocity ramping for smooth motion
-    │       └── waypoint_nav.py ← Odometry-based waypoint navigator
-    └── 📦 two_wheel_robot/     ← Simulation ROS2 package
+    │       ├── avoid.py                ← Zone-based obstacle avoidance node
+    │       ├── vel_smoother.py         ← Velocity ramping for smooth motion
+    │       └── waypoint_nav.py         ← Odometry-based waypoint navigator
+    └── 📦 two_wheel_robot/             ← Simulation ROS2 package
         ├── config/
-        │   ├── nav2_params.yaml← Nav2 stack parameters
-        │   └── slam_params.yaml← SLAM Toolbox parameters
+        │   ├── nav2_params.yaml        ← Nav2 stack parameters
+        │   └── slam_params.yaml        ← SLAM Toolbox parameters
         ├── launch/
-        │   └── spawn_robot.launch.py ← Spawns robot into Gazebo
+        │   └── spawn_robot.launch.py   ← Spawns robot into Gazebo
         ├── maps/
-        │   ├── my_warehouse_map.pgm  ← SLAM-generated occupancy grid
-        │   └── my_warehouse_map.yaml ← Map metadata file
+        │   ├── my_warehouse_map.pgm    ← SLAM-generated occupancy grid
+        │   └── my_warehouse_map.yaml   ← Map metadata file
         ├── urdf/
-        │   └── two_wheel_robot.urdf  ← Robot description (diff drive + LiDAR)
+        │   └── two_wheel_robot.urdf    ← Robot description (diff drive + LiDAR)
         └── worlds/
-            └── warehouse.world       ← Gazebo warehouse environment
+            └── warehouse.world         ← Gazebo warehouse environment
 ```
 
 ---
@@ -95,8 +94,8 @@ smart-warehouse-obstacle-avoidance/
                                                │
                               ┌────────────────┴──────────────┐
                               ▼                               ▼
-                          LEFT MOTOR                     RIGHT MOTOR
-                        (L298N OUT1/2)                 (L298N OUT3/4)
+                         LEFT MOTOR                     RIGHT MOTOR
+                       (L298N OUT1/2)                 (L298N OUT3/4)
 ```
 
 ### ROS2 Topic Flow
@@ -336,7 +335,7 @@ Subscribes to `/odom` → publishes to `/cmd_vel`
 Navigates through a hardcoded list of (x, y) waypoints using odometry feedback.
 
 ### Arduino `motor_control.ino`
-Receives 2 bytes over serial (left_byte, right_byte):
+Receives 2 bytes over serial (left\_byte, right\_byte):
 
 ```
 127 = stop  |  > 127 = forward  |  < 127 = reverse
@@ -393,10 +392,10 @@ Speed limit: 1.5× multiplier (75% max, safe for warehouse)
 
 | Name | Register No | Role |
 |---|---|---|
-| Nafeesath Liyana Latheef | 23BCARI117 | Simulation, Hardware Integration, ROS2 |
-| Muhammed Mishal | — | Hardware Assembly, Testing |
+| Nafeesath Liyana Latheef | 23BCARI117 | Simulation, ROS2 |
+| Muhammed Mishal | — | Hardware Assembly, Hardware Integration, Testing |
 
-  
+**Internal Guide:** Rakesh K K  
 **Institution:** Yenepoya Institute of Arts, Science, Commerce and Management  
 **Program:** BCA — Artificial Intelligence, Machine Learning, Robotics & IoT
 
